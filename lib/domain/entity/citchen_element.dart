@@ -9,7 +9,7 @@ class CitchenElement {
   final int price;
   final int weight;
   final String description;
-  final String imageUrl;
+  final String? imageUrl;
   final List<String> tegs;
 
 
