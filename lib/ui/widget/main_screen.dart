@@ -1,5 +1,6 @@
 
 import 'package:eat_delivery_flutter/ui/widget/citchen_widget.dart';
+import 'package:eat_delivery_flutter/ui/widget/component/basket_widget.dart';
 import 'package:eat_delivery_flutter/ui/widget/component/categories_widget.dart';
 import 'package:eat_delivery_flutter/ui/widget/component/tab_bar_widget.dart';
 import 'package:flutter/material.dart';
@@ -20,9 +21,7 @@ class _UserMainScreenState extends State<UserMainScreen> {
 
     GategoryListWidget.create(),
     CithcenElementsListWidget.create(),
-    const Text(
-      'Корзина',
-    ),
+    BasketWidget.create(),
     const Text(
       'Аккаунт',
     ),
@@ -81,6 +80,7 @@ class _UserMainScreenState extends State<UserMainScreen> {
             //Body Container
             Expanded(
               child: Container(
+                width: double.infinity,
                 padding: const EdgeInsets.symmetric(horizontal: 30.0),
                 child:  pages[selectedPageIndex],
               ),

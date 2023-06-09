@@ -11,6 +11,8 @@ class CitchenElement {
   final String description;
   final String? imageUrl;
   final List<String> tegs;
+  @JsonKey(ignore: true)
+  var count  = 0;
 
 
   CitchenElement(

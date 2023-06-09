@@ -120,6 +120,7 @@ class _AlertDialogWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final id = cubit.state.itemsGet[index].id;
     final name = cubit.state.itemsGet[index].name;
     final description = cubit.state.itemsGet[index].description;
     final price = cubit.state.itemsGet[index].price;
@@ -208,7 +209,10 @@ class _AlertDialogWidget extends StatelessWidget {
                         borderRadius: BorderRadius.circular(10),
                       ),
                       child: TextButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            cubit.incrementDishes(id);
+                            Navigator.of(context).pop();
+                          },
                           child: const Text('Добавить в корзину',style: TextStyle(color: Colors.white),),
                         ),
                     ),

@@ -47,4 +47,43 @@ class DishesViewCubit extends Cubit<DishesViewState> {
     }
     return name;
   }
+
+  void incrementDishes(int idDishes) {
+    final List<CitchenElement> dishes = state.itemsGet;
+    for (var element in dishes){
+      if (element.id == idDishes)
+      {
+        if (element.count >= 0) {
+          element.count ++;
+          final newState = state.copyWith(listItems: dishes);
+          emit(newState);
+        }
+      }
+    }
+  }
+
+  void decrementDishes(int idDishes) {
+    final List<CitchenElement> dishes = state.itemsGet;
+    for (var element in dishes){
+      if (element.id == idDishes)
+      {
+        if (element.count > 0){
+          element.count --;
+          final newState = state.copyWith(listItems: dishes );
+          emit(newState);
+        }
+
+      }
+    }
+  }
+
+  int allPrice() {
+    int allPrice= 0;
+    final List<CitchenElement> dishes = state.itemsGet;
+    for (var element in dishes){
+      int priceElement = element.price * element.count;
+      allPrice += priceElement;
+    }
+    return allPrice;
+  }
 }
