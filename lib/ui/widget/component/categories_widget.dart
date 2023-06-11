@@ -1,4 +1,5 @@
 import 'package:eat_delivery_flutter/domain/blocs/catrgories_cubit.dart';
+import 'package:eat_delivery_flutter/domain/blocs/main_screen_bloc.dart';
 import 'package:eat_delivery_flutter/domain/entity/category.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -20,14 +21,7 @@ class GategoryListWidget extends StatefulWidget {
 }
 
 class _GategoryListWidgetState extends State<GategoryListWidget> {
-  @override
-  // void initState() {
-  //  widget.cubit = context.watch<CategoriesViewCubit>();
-  //  WidgetsBinding.instance.addPostFrameCallback((_){
-  //    widget.cubit.loadCategories();
-  //  });
-  //   super.initState();
-  // }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -76,13 +70,9 @@ class _CatgeoryRowWidget extends StatelessWidget {
     final cubit = context.watch<CategoriesViewCubit>();
     final List<Category> categories =cubit.state.itemsGet;
     final name = cubit.changeString(categories[index].name);
+    final cubitMainScreen = context.watch<MainViewCubit>();
+
     return Container(
-      // height: 200,
-      // width: 200,
-      // padding: const EdgeInsets.only(left: 6, right: 6),
-      // decoration: BoxDecoration(
-      //   borderRadius: BorderRadius.circular(3),
-      // ),
       child:
       Stack(
         children:[
@@ -103,6 +93,7 @@ class _CatgeoryRowWidget extends StatelessWidget {
               color: Colors.transparent,
               child: InkWell(
                   onTap: () {
+                    cubitMainScreen.clickCategoryHandler(name);
                   print('CLICK!');
                   } //model.onFriendsTap(context,index),
               ),

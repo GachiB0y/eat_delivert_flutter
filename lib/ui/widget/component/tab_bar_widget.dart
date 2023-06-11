@@ -21,7 +21,7 @@ class _TabBarWidgetState extends State<TabBarWidget> {
             buildItem(index: 0, icon: const Icon(Icons.home_filled), text: 'Главная'),
             buildItem(index: 1, icon: const Icon(Icons.search),text:'Поиск'),
             buildItem(index: 2, icon: const Icon(Icons.shopping_basket_outlined),text:'Корзина'),
-            buildItem(index: 3, icon: Icon(Icons.person),text:'Аккаунт'),
+            buildItem(index: 3, icon: const Icon(Icons.person),text:'Аккаунт'),
           ],
         ),
       );
