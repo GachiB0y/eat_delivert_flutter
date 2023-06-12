@@ -8,13 +8,6 @@ class UserMainScreen extends StatefulWidget {
     Key? key,
   }) : super(key: key);
 
-  static Widget create() {
-    return BlocProvider<MainViewCubit>(
-      create: (context) => MainViewCubit(),
-      child: UserMainScreen(),
-    );
-  }
-
   @override
   State<UserMainScreen> createState() => _UserMainScreenState();
 }
@@ -59,7 +52,6 @@ class _UserMainScreenState extends State<UserMainScreen> {
                 ],
               ):
               Row(
-                // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 mainAxisSize: MainAxisSize.max,
                 children: [
                   const Icon(Icons.location_on_outlined),
@@ -86,7 +78,6 @@ class _UserMainScreenState extends State<UserMainScreen> {
                 width: double.infinity,
                 padding: const EdgeInsets.symmetric(horizontal: 30.0),
                 child:pages[selectedPageIndex],
-                // pages[selectedPageIndex],
               ),
             ),
           ],

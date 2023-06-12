@@ -16,5 +16,6 @@ class CategoryListService {
       throw Exception('Failed to load');
     }
   }
+  const CategoryListService();
 
 }

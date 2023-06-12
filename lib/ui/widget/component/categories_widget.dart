@@ -5,14 +5,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class GategoryListWidget extends StatefulWidget {
-  GategoryListWidget({
+  const GategoryListWidget({
     Key? key,
   }) : super(key: key);
 
   static Widget create() {
     return BlocProvider<CategoriesViewCubit>(
       create: (context) => CategoriesViewCubit(),
-      child: GategoryListWidget(),
+      child: const GategoryListWidget(),
     );
   }
 
@@ -24,7 +24,7 @@ class _GategoryListWidgetState extends State<GategoryListWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       body:_CategoryWidget()
     );
   }
@@ -32,7 +32,7 @@ class _GategoryListWidgetState extends State<GategoryListWidget> {
 
 class _CategoryWidget extends StatelessWidget {
 
-  _CategoryWidget({Key? key}) : super(key: key);
+  const _CategoryWidget({Key? key}) : super(key: key);
 
 
   @override
@@ -40,20 +40,18 @@ class _CategoryWidget extends StatelessWidget {
     final cubit = context.watch<CategoriesViewCubit>();
     final List<Category> categories =cubit.state.itemsGet;
     return Center(
-      child: Container(
-        child: ListView.builder(
-          scrollDirection: Axis.vertical,
-          shrinkWrap: true,
-          itemCount:  categories.length,
-          itemBuilder: (BuildContext context, int index) {
-            return Padding(
-              padding: const EdgeInsets.only(bottom: 8.0),
-              child: _CatgeoryRowWidget(
-                index: index,
-              ),
-            );
-          },
-        ),
+      child: ListView.builder(
+        scrollDirection: Axis.vertical,
+        shrinkWrap: true,
+        itemCount:  categories.length,
+        itemBuilder: (BuildContext context, int index) {
+          return Padding(
+            padding: const EdgeInsets.only(bottom: 8.0),
+            child: _CatgeoryRowWidget(
+              index: index,
+            ),
+          );
+        },
       ),
     );
   }
@@ -61,7 +59,7 @@ class _CategoryWidget extends StatelessWidget {
 
 class _CatgeoryRowWidget extends StatelessWidget {
   final int index;
-  _CatgeoryRowWidget(
+  const _CatgeoryRowWidget(
       {Key? key, required this.index})
       : super(key: key);
 
@@ -94,7 +92,6 @@ class _CatgeoryRowWidget extends StatelessWidget {
               child: InkWell(
                   onTap: () {
                     cubitMainScreen.clickCategoryHandler(name);
-                  print('CLICK!');
                   } //model.onFriendsTap(context,index),
               ),
             ),

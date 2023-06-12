@@ -1,6 +1,13 @@
-import 'package:eat_delivery_flutter/my_app.dart';
+import 'package:eat_delivery_flutter/factories/di_container.dart';
 import 'package:flutter/material.dart';
 
+
+abstract class AppFactory {
+  Widget makeApp();
+}
+
+final appFactory = makeFactoryApp();
 void main() {
-  runApp(const MyApp());
+  final app = appFactory.makeApp();
+  runApp(app);
 }

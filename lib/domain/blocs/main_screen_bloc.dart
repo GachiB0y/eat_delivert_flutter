@@ -46,21 +46,22 @@ final String? label;
 }
 
 class MainViewCubit extends Cubit<MainViewState> {
-  final apiClient = CitchenListService();
-  final pages =<Widget>[
-    GategoryListWidget.create(),
-    CithcenElementsListWidget.create(),
-    BasketWidget.create(),
-    const Text(
-      'Аккаунт',
-    ),
-  ];
-  MainViewCubit() : super(MainViewState(label:'Категория',isCategory: false, selectedPageIndex: 0,pages:<Widget>[
+  // final apiClient = CitchenListService();
+  final CitchenListService apiClient;
+  // final pages =<Widget>[
+  //   GategoryListWidget.create(),
+  //   CithcenElementsListWidget.create(),
+  //   BasketWidget.create(),
+  //   const Text(
+  //     'Аккаунт',
+  //   ),
+  // ];
+  MainViewCubit({required this.apiClient}) : super(MainViewState(label:'Категория',isCategory: false, selectedPageIndex: 0,pages:<Widget>[
     GategoryListWidget.create(),
     const Text(
       'Поиск',
     ),
-    BasketWidget.create(),
+    BasketWidget(),
     const Text(
       'Аккаунт',
     ),
@@ -89,11 +90,9 @@ class MainViewCubit extends Cubit<MainViewState> {
 
   void onChangeTab(int index) {
     final newIndex = index;
-    print('index:${newIndex}');
     final newState = state.copyWith(selectedPageIndex:newIndex,isCategory:  false);
     emit(newState);
     clickBackHandler();
-    print('isCategory:${state.isCategory}');
   }
 
 }

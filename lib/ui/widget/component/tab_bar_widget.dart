@@ -47,7 +47,7 @@ class _TabBarWidgetState extends State<TabBarWidget> {
             ),
           ),
         ),
-        Text('${text}',style: TextStyle(fontSize:12),),
+        Text('${text}',style: const TextStyle(fontSize:12),),
       ],
     );
   }

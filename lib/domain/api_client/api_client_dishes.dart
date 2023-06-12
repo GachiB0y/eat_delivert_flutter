@@ -1,6 +1,4 @@
 import 'dart:convert';
-
-import 'package:eat_delivery_flutter/domain/entity/categoryList.dart';
 import 'package:eat_delivery_flutter/domain/entity/citchen_list.dart';
 import 'package:http/http.dart' as http;
 
@@ -17,5 +15,5 @@ class CitchenListService {
       throw Exception('Failed to load');
     }
   }
-
+const CitchenListService();
 }

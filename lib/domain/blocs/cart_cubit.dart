@@ -31,6 +31,7 @@ class CartViewCubit extends Cubit<CartViewState> {
   void loadDishes() async{
     final res = await apiClient.fetchCitchenList();
     if(res.dishes == null) return;
+    if(state.itemsGet.length > 0 ) return;
     final newState = state.copyWith(listItems: res.dishes );
     emit(newState);
   }

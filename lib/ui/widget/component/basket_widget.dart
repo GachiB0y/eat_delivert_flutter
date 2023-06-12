@@ -1,6 +1,4 @@
-
-
-import 'package:eat_delivery_flutter/domain/blocs/dishes_cubit.dart';
+import 'package:eat_delivery_flutter/domain/blocs/cart_cubit.dart';
 import 'package:eat_delivery_flutter/domain/entity/citchen_element.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -12,13 +10,6 @@ class BasketWidget extends StatefulWidget {
   BasketWidget({
     Key? key,
   }) : super(key: key);
-
-  static Widget create() {
-    return BlocProvider<DishesViewCubit>(
-      create: (context) => DishesViewCubit(),
-      child: BasketWidget(),
-    );
-  }
 
   @override
   State<BasketWidget> createState() => _BasketWidgetState();
@@ -41,7 +32,7 @@ class _CategoryWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final cubit = context.watch<DishesViewCubit>();
+    final cubit = context.watch<CartViewCubit>();
     final List<CitchenElement> dishes =cubit.state.itemsGet;
     final String allPrice = cubit.allPrice().toString();
     return Center(
@@ -92,7 +83,7 @@ class _CartRowWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final cubit = context.watch<DishesViewCubit>();
+    final cubit = context.watch<CartViewCubit>();
     final List<CitchenElement> dishes =cubit.state.itemsGet;
     final id = dishes[index].id;
     final name = dishes[index].name;
@@ -107,7 +98,7 @@ class _CartRowWidget extends StatelessWidget {
               "${url}",
               height: 50,
               width: 50,
-            ): SizedBox.shrink(),
+            ): const SizedBox.shrink(),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -133,20 +124,20 @@ class _CartRowWidget extends StatelessWidget {
                     onPressed: () {
                       cubit.decrementDishes(id);
                     },
-                    icon: Icon(Icons.remove)
+                    icon: const Icon(Icons.remove)
                 ),
                 Text("${count}"),
                 IconButton(
                     onPressed: () {
                       cubit.incrementDishes(id);
                     },
-                    icon: Icon(Icons.add)
+                    icon: const Icon(Icons.add)
                 ),
               ],),
             ),
 
           ],
-          ) : SizedBox.shrink(),
+          ) : const SizedBox.shrink(),
     );
   }
 }

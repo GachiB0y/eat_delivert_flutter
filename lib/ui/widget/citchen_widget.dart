@@ -1,5 +1,5 @@
+import 'package:eat_delivery_flutter/domain/blocs/cart_cubit.dart';
 import 'package:eat_delivery_flutter/domain/blocs/dishes_cubit.dart';
-import 'package:eat_delivery_flutter/domain/entity/category.dart';
 import 'package:eat_delivery_flutter/domain/entity/citchen_element.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -11,8 +11,12 @@ class CithcenElementsListWidget extends StatefulWidget {
 
 
   static Widget create() {
-    return BlocProvider<DishesViewCubit>(
-      create: (context) => DishesViewCubit(),
+    return  MultiBlocProvider(
+      providers: [
+        BlocProvider<DishesViewCubit>(
+          create: (context) => DishesViewCubit(),
+        ),
+      ],
       child: CithcenElementsListWidget(),
     );
   }
@@ -39,6 +43,7 @@ class _DishesWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final cubit = context.watch<DishesViewCubit>();
+    final cubitCart = context.watch<CartViewCubit>();
     final List<CitchenElement> dishes =cubit.state.itemsGet;
     return Center(
       child: GridView.builder(
@@ -59,7 +64,7 @@ class _DishesWidget extends StatelessWidget {
                   child: InkWell(
                       onTap: () => showDialog(
                         context: context,
-                        builder: (BuildContext context) => _AlertDialogWidget(index: index, cubit: cubit,),
+                        builder: (BuildContext context) => _AlertDialogWidget(index: index, cubit: cubit, cubitCart: cubitCart,),
                       ),
                   ),
                 ),
@@ -116,7 +121,9 @@ class _DishesRowWidget extends StatelessWidget {
 class _AlertDialogWidget extends StatelessWidget {
   final int index;
   final DishesViewCubit cubit;
-  const _AlertDialogWidget({Key? key, required this.index, required this.cubit}) : super(key: key);
+  final CartViewCubit cubitCart;
+
+  const _AlertDialogWidget({Key? key, required this.index, required this.cubit, required this.cubitCart}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -210,7 +217,8 @@ class _AlertDialogWidget extends StatelessWidget {
                       ),
                       child: TextButton(
                           onPressed: () {
-                            cubit.incrementDishes(id);
+                            cubitCart.incrementDishes(id);
+                            print('ADD');
                             Navigator.of(context).pop();
                           },
                           child: const Text('Добавить в корзину',style: TextStyle(color: Colors.white),),

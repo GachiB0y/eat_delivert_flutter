@@ -1,8 +1,12 @@
-import 'package:eat_delivery_flutter/ui/widget/main_screen.dart';
 import 'package:flutter/material.dart';
 
+abstract class ScreenFactory {
+  Widget makeUserMainScreen();
+}
+
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final ScreenFactory screenFactory;
+  const MyApp({super.key, required this.screenFactory});
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +16,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home:UserMainScreen.create(),
+      home:screenFactory.makeUserMainScreen(),
     );
   }
 }
