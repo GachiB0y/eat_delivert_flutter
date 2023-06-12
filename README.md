@@ -1,6 +1,7 @@
 # eat_delivery_flutter
+![til](./assets/Example_eat_app.gif)
 
-A new Flutter project.
+Flutter project с использованием следующих технологий: Bloc, http, DI, code generation (json serializable).
 
 ## Getting Started
 
