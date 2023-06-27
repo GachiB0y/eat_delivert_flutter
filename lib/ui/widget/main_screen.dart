@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class UserMainScreen extends StatefulWidget {
-  UserMainScreen({
+  const UserMainScreen({
     Key? key,
   }) : super(key: key);
 
@@ -45,7 +45,7 @@ class _UserMainScreenState extends State<UserMainScreen> {
                     },
                     icon:  const Icon(Icons.arrow_back_ios_new),
                   ),
-                  Text('${label}'),
+                  Text('$label'),
                   SizedBox(
                       height:MediaQuery.of(context).size.height * 0.05 ,
                       child: const CircleAvatar()),
@@ -76,7 +76,7 @@ class _UserMainScreenState extends State<UserMainScreen> {
             Expanded(
               child: Container(
                 width: double.infinity,
-                padding: const EdgeInsets.symmetric(horizontal: 30.0),
+                 padding: const EdgeInsets.symmetric(horizontal: 16.0),
                 child:pages[selectedPageIndex],
               ),
             ),
